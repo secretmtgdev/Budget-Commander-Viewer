@@ -2,6 +2,10 @@ import { SCRYFALL_ENDPOINTS } from './ApiConstants';
 import { getFullQueryEndpoint } from './Utils';
 
 export const getCardsByColors = (colors: string[]) => {
+    if (!colors || colors.length === 0) {
+        return;
+    }
+
     const colorQuery = colors.reduce((prevColor, curColor) => prevColor + curColor);
     const epQuery = `${getFullQueryEndpoint(SCRYFALL_ENDPOINTS.search)}?q=c:${colorQuery}`;
     fetch(epQuery)

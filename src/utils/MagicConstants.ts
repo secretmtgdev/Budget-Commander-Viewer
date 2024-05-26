@@ -1,5 +1,11 @@
 import { IColorObject } from "./Types"
 
+export enum CARD_COLOR {
+    single,
+    guild,
+    shard
+}
+
 export const GUILDS: IColorObject = {
     azorius: 'azorius',
     dimir: 'dimir',

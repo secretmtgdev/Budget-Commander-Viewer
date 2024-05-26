@@ -4,19 +4,19 @@
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
-    cursor: pointer;
     font-size: 22px;
 }
 
 .label-container input {
     position: aboslute;
     opacity: 0;
-    cursor: pointer;
     height: 0;
     width: 0;
 }
 
-.label-container:hover input ~ .checkmark {
+/* Prevent background change on disabled */
+.label-container:not(.disabled):hover input ~ .checkmark {
+    cursor: pointer;
     background-color: grey;
 }
 
@@ -55,4 +55,8 @@
 
     /* rotates the pixels to give a checkmark effect */
     transform: rotate(45deg);
+}
+
+.disabled {
+    background-color: red;
 }

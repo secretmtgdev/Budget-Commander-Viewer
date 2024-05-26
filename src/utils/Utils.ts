@@ -16,7 +16,6 @@ export const disableElementsByDataSet = (datasetType: string, ...toDisable: any[
     });
 }
 
-
 /*************************************
  ** All color related query helpers **
  *************************************/

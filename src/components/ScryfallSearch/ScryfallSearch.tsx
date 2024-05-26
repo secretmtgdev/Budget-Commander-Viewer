@@ -2,14 +2,14 @@ import React from "react";
 
 import { useAppSelector } from "../../redux/hooks";
 import { getAllMagicColors } from "../../utils/Utils";
-import CheckboxPicker from "../CheckboxPicker/CheckboxPicker";
 import { getCardsByColors } from "../../utils/Queries";
+import CheckBoxPickerWrapper from "../CheckboxPicker/CheckboxPicker";
 
 const ScryfallSearch = () => {
     const colorSelection = useAppSelector(state => state.colorSelection.value);
     return (
         <>
-            <CheckboxPicker options={getAllMagicColors()}/>
+            <CheckBoxPickerWrapper options={getAllMagicColors()}/>
             <button onClick={() => getCardsByColors(colorSelection)}>Search</button>
         </>
     )

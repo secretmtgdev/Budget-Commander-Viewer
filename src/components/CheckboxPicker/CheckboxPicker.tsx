@@ -5,19 +5,30 @@ import { addColor, removeColor } from '../../redux/colorSelectionSlice';
 import './CheckboxPicker.css';
 import { disableElementsByDataSet, isGuild, isShard, isSingleColor } from '../../utils/Utils';
 import { CARD_COLOR, DATASET_TYPES } from '../../utils/MagicConstants';
+import { AppDispatch } from '../../redux/Store';
 
 export interface ICheckboxPicker {
-    options: string[][]
+    dispatch: AppDispatch;
+    options: string[][];
 }
 
-class CheckboxPicker extends React.Component<ICheckboxPicker> {
+function CheckBoxPickerWrapper(WrappedComponent: any) {
+    return function(props: any) {
+        const dispatch = useAppDispatch();
+        return (
+            <WrappedComponent dispatch={dispatch} {...props} />
+        )
+    }
+}
+
+export class CheckboxPicker extends React.Component<ICheckboxPicker> {
     private dispatch;
     private options;
 
     constructor(props: ICheckboxPicker) {
         super(props);
         this.options = props.options;
-        this.dispatch = useAppDispatch();
+        this.dispatch = props.dispatch;
     }
 
     private handleChecked(checkbox: HTMLInputElement) {
@@ -71,4 +82,4 @@ class CheckboxPicker extends React.Component<ICheckboxPicker> {
     }
 }
 
-export default CheckboxPicker;
+export default CheckBoxPickerWrapper(CheckboxPicker);

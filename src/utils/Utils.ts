@@ -3,6 +3,18 @@ import { CARD_COLORS, GUILDS, SHARDS } from "./MagicConstants";
 import { IColorObject } from "./Types";
 
 export const getFullQueryEndpoint = (queryEndpoint: string) => `${SCRYFALL_BASE_URI}/${queryEndpoint}`;
+export const disableElementsByDataSet = (datasetType: string, ...toDisable: any[]) => {
+    const elements = document.querySelectorAll<HTMLInputElement>(`[${datasetType}]`);
+    Array.from(elements)
+    .filter(element => {
+        const dataType = element.getAttribute(datasetType);
+        return toDisable.indexOf(parseInt(dataType!.valueOf())) >= 0;
+    })
+    .forEach(element => {
+        element.disabled = true;
+        element.parentElement?.classList.add('disabled');
+    });
+}
 
 
 /*************************************

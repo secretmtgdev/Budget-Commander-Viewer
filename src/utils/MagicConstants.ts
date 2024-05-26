@@ -38,3 +38,7 @@ export const CARD_COLORS: IColorObject = {
     colorless: 'c',
     muilticolor: 'm'
 }
+
+export const DATASET_TYPES = {
+    color: 'data-color-type'
+}

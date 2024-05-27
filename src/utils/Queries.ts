@@ -1,4 +1,5 @@
 import { SCRYFALL_ENDPOINTS } from './ApiConstants';
+import { ScryfallLib } from './Types';
 import { getFullQueryEndpoint } from './Utils';
 
 export const getCardsByColors = (colors: string[]) => {
@@ -7,10 +8,14 @@ export const getCardsByColors = (colors: string[]) => {
     }
 
     const colorQuery = colors.reduce((prevColor, curColor) => prevColor + curColor);
+
+    console.error(`Fetching colors: ${colorQuery}`);
     const epQuery = `${getFullQueryEndpoint(SCRYFALL_ENDPOINTS.search)}?q=c:${colorQuery}`;
     fetch(epQuery)
         .then(res => res.json())
-        .then(res => console.error(res));
+        .then((res: ScryfallLib.ICardSearchObject) => {
+
+        });
 }
 
 export const getCardsByCardType = () => {}

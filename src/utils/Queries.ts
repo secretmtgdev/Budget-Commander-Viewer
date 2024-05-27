@@ -4,14 +4,15 @@ import { getFullQueryEndpoint } from './Utils';
 
 const getColorQuery = (colors: string[]) => colors.reduce((prevColor, curColor) => prevColor + curColor);
 const getCardsByQuery = async (epQuery: string): Promise<ScryfallLib.ICard[]> => {
+    let query = `${getFullQueryEndpoint(SCRYFALL_ENDPOINTS.search)}?q=${epQuery}`;
     let cards: ScryfallLib.ICard[] = [];
     let gettingAllCards = true;
     while (gettingAllCards) {
-        const cardBatch = await fetch(epQuery)
+        const cardBatch = await fetch(query)
         .then(res => res.json())
         .then((res: ScryfallLib.ICardResponse) => {
             if (res.has_more) {
-                epQuery = res.next_page;
+                query = res.next_page;
             }
 
             gettingAllCards = res.has_more;
@@ -25,7 +26,7 @@ const getCardsByQuery = async (epQuery: string): Promise<ScryfallLib.ICard[]> =>
 }
 
 export const getCardsByFilters = async (filters: ClientLib.IAllFilters) => {
-    let curQuery = [`${getFullQueryEndpoint(SCRYFALL_ENDPOINTS.search)}?q=`];
+    let curQuery = [];
     if (filters.colors) {
         curQuery.push(`c:${getColorQuery(filters.colors)}`);
     }
@@ -35,11 +36,9 @@ export const getCardsByFilters = async (filters: ClientLib.IAllFilters) => {
         if (filters.priceRange.maxPrice !== Infinity) {
             curQuery.push(`+usd<=${filters.priceRange.maxPrice}`);
         }
-        
     }
 
     const cards = await getCardsByQuery(curQuery.join(''));
-    console.error(cards);
     return cards;
 }
 

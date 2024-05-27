@@ -10,7 +10,7 @@ const initialState: CardListState = {
 }
 
 export const cardListSlice = createSlice({
-    name: 'priceSelection',
+    name: 'cardList',
     initialState,
     reducers: {
         setCardList: (state, action: PayloadAction<ScryfallLib.ICard[]>) => {

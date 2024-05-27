@@ -6,7 +6,7 @@ export enum CARD_COLOR {
     shard
 }
 
-export const GUILDS: ColorLib.IColorObject = {
+export const GUILDS: ColorLib.IColor = {
     azorius: 'azorius',
     dimir: 'dimir',
     rakdos: 'rakdos',
@@ -19,7 +19,7 @@ export const GUILDS: ColorLib.IColorObject = {
     simic: 'simic'
 }
 
-export const SHARDS: ColorLib.IColorObject = {
+export const SHARDS: ColorLib.IColor = {
     bant: 'bant',
     esper: 'esper',
     grixis: 'grixis',
@@ -27,7 +27,7 @@ export const SHARDS: ColorLib.IColorObject = {
     naya: 'naya'
 }
 
-export const CARD_COLORS: ColorLib.IColorObject = {
+export const CARD_COLORS: ColorLib.IColor = {
     white: 'w',
     blue: 'u',
     red: 'r',

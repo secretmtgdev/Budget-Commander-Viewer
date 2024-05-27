@@ -21,12 +21,12 @@ export const disableElementsByDataSet = (datasetType: string, ...toDisable: any[
  *************************************/
 export const getAllMagicColors = (): string[][] => {
     const colors: string[][] = [];
-    const getMagicColorsHelper = (cardColorObj: ColorLib.IColorObject) => {
+    const getMagicColorsHelper = (cardColorObj: ColorLib.IColor) => {
         for (const color in cardColorObj) {
             if (typeof cardColorObj[color] === 'string') {
                 colors.push([color, cardColorObj[color] as string]);
             } else {
-                getMagicColorsHelper(cardColorObj[color] as ColorLib.IColorObject);
+                getMagicColorsHelper(cardColorObj[color] as ColorLib.IColor);
             }
         }
     }

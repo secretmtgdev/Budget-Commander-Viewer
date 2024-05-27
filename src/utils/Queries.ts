@@ -13,7 +13,7 @@ export const getCardsByColors = (colors: string[]) => {
     const epQuery = `${getFullQueryEndpoint(SCRYFALL_ENDPOINTS.search)}?q=c:${colorQuery}`;
     fetch(epQuery)
         .then(res => res.json())
-        .then((res: ScryfallLib.ICardSearchObject) => {
+        .then((res: ScryfallLib.ICard) => {
 
         });
 }

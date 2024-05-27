@@ -1,12 +1,12 @@
 export declare namespace ColorLib {
-    interface IColorObject {
-        [key: string]: string | IColorObject;
+    interface IColor {
+        [key: string]: string | IColor;
     }
 }
 
 export declare namespace ScryfallLib {
 // Don't need all of othe fields
-    interface ICardSearchObject {
+    interface ICard {
         data: any[];
         has_more: boolean;
         next_page: string;

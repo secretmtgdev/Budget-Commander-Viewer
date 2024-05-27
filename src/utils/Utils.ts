@@ -1,6 +1,6 @@
 import { SCRYFALL_BASE_URI } from "./ApiConstants";
 import { CARD_COLORS, GUILDS, SHARDS } from "./MagicConstants";
-import { ColorLib } from "./Types";
+import { ClientLib } from "./Types";
 
 export const getFullQueryEndpoint = (queryEndpoint: string) => `${SCRYFALL_BASE_URI}/${queryEndpoint}`;
 export const disableElementsByDataSet = (datasetType: string, ...toDisable: any[]) => {
@@ -21,12 +21,12 @@ export const disableElementsByDataSet = (datasetType: string, ...toDisable: any[
  *************************************/
 export const getAllMagicColors = (): string[][] => {
     const colors: string[][] = [];
-    const getMagicColorsHelper = (cardColorObj: ColorLib.IColor) => {
+    const getMagicColorsHelper = (cardColorObj: ClientLib.IColor) => {
         for (const color in cardColorObj) {
             if (typeof cardColorObj[color] === 'string') {
                 colors.push([color, cardColorObj[color] as string]);
             } else {
-                getMagicColorsHelper(cardColorObj[color] as ColorLib.IColor);
+                getMagicColorsHelper(cardColorObj[color] as ClientLib.IColor);
             }
         }
     }

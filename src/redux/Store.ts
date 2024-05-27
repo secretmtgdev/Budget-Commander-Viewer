@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import colorSelectionReducer from './colorSelectionSlice';
+import priceSelectionSlice from "./priceSelectionSlice";
+import cardListSlice from "./cardListSlice";
 
 export const store = configureStore({
    reducer: {
-      colorSelection: colorSelectionReducer
+      colorSelection: colorSelectionReducer,
+      priceSelection: priceSelectionSlice,
+      cardList: cardListSlice
    } 
 });
 

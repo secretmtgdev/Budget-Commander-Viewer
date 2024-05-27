@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch } from '../../redux/hooks';
 import { addColor, removeColor } from '../../redux/colorSelectionSlice';
 import './CheckboxPicker.css';
-import { disableElementsByDataSet, isGuild, isShard, isSingleColor } from '../../utils/Utils';
+import { disableElementsByDataSet, isGuild, isSingleColor } from '../../utils/Utils';
 import { CARD_COLOR, DATASET_TYPES } from '../../utils/MagicConstants';
-import { AppDispatch } from '../../redux/Store';
 
 export interface ICheckboxPicker {
     options: string[][];

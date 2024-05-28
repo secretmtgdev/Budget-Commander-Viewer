@@ -1,34 +1,23 @@
-import { SCRYFALL_ENDPOINTS } from './ApiConstants';
+import { EMPTY_CARD_RESPONSE, SCRYFALL_ENDPOINTS } from './ApiConstants';
 import { ClientLib, ScryfallLib } from './Types';
 import { getFullQueryEndpoint } from './Utils';
 
 const getColorQuery = (colors: string[]) => colors.reduce((prevColor, curColor) => prevColor + curColor);
-const getCardsByQuery = async (epQuery: string): Promise<ScryfallLib.ICard[]> => {
+const getCardsByQuery = async (epQuery: string): Promise<[ScryfallLib.ICard[], string]> => {
     let query = `${getFullQueryEndpoint(SCRYFALL_ENDPOINTS.search)}?q=${epQuery}`;
     let cards: ScryfallLib.ICard[] = [];
-    let gettingAllCards = true;
-    while (gettingAllCards) {
-        const cardBatch = await fetch(query)
+    const cardResponse = await fetch(query)
         .then(res => res.json())
-        .then((res: ScryfallLib.ICardResponse) => {
-            if (res.has_more) {
-                query = res.next_page;
-            }
-
-            gettingAllCards = res.has_more;
-            return res.data;
-        });
-
-        cards = [...cards, ...cardBatch];
-    }
-
-    return cards;
+        .then((res: ScryfallLib.ICardResponse) => res)
+        .catch(() => EMPTY_CARD_RESPONSE);
+    cards = [...cards, ...cardResponse.data];
+    return [cards, cardResponse.next_page];
 }
 
 export const getCardsByFilters = async (filters: ClientLib.IAllFilters) => {
     let curQuery = [];
-    if (filters.colors) {
-        curQuery.push(`c:${getColorQuery(filters.colors)}`);
+    if (filters.colorCombinations && filters.colorCombinations.colors!.length > 0) {
+        curQuery.push(`c${filters.colorCombinations.areSingle ? ':' : '='}${getColorQuery(filters.colorCombinations.colors)}`);
     }
 
     if (filters.priceRange) {
@@ -38,8 +27,7 @@ export const getCardsByFilters = async (filters: ClientLib.IAllFilters) => {
         }
     }
 
-    const cards = await getCardsByQuery(curQuery.join(''));
-    return cards;
+    return await getCardsByQuery(curQuery.join(''));
 }
 
 export const getCardsByColors = async (colors: string[]) => {
@@ -49,8 +37,8 @@ export const getCardsByColors = async (colors: string[]) => {
 
     const colorQuery = getColorQuery(colors);
     let epQuery = `${getFullQueryEndpoint(SCRYFALL_ENDPOINTS.search)}?q=c:${colorQuery}`;
-    let cards: ScryfallLib.ICard[] = await getCardsByQuery(epQuery);
-    return cards;
+    let [cards, nextPage]: [ScryfallLib.ICard[], string] = await getCardsByQuery(epQuery);
+    return [cards, nextPage];
 }
 
 export const getCardsByCardType = () => {}

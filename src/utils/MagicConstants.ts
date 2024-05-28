@@ -27,6 +27,14 @@ export const SHARDS: ClientLib.IColor = {
     naya: 'naya'
 }
 
+export const FOUR_COLOR: ClientLib.IColor = {
+    chaos: 'chaos',
+    aggression: 'aggression',
+    altruism: 'altruism',
+    growth: 'growth',
+    artifice: 'artifice'
+}
+
 export const CARD_COLORS: ClientLib.IColor = {
     white: 'w',
     blue: 'u',
@@ -35,8 +43,7 @@ export const CARD_COLORS: ClientLib.IColor = {
     green: 'g',
     guild_colors: GUILDS,
     shard_colors: SHARDS,
-    colorless: 'c',
-    muilticolor: 'm'
+    four_color: FOUR_COLOR
 }
 
 export const DATASET_TYPES = {

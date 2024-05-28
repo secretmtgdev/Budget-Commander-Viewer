@@ -1,11 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ColorSelectionState {
-    value: string[];
+    colors: string[];
+    areSingle: boolean;
+    areGuild: boolean;
+    areShard: boolean;
 }
 
 const initialState: ColorSelectionState = {
-    value: []
+    colors: [],
+    areSingle: false,
+    areGuild: false,
+    areShard: false
 }
 
 export const colorSelectionSlice = createSlice({
@@ -13,16 +19,25 @@ export const colorSelectionSlice = createSlice({
     initialState,
     reducers: {
         addColor: (state, action: PayloadAction<string>) => {
-            state.value.push(action.payload)
+            state.colors.push(action.payload)
         },
         removeColor: (state, action: PayloadAction<string>) => {
-            const index = state.value.indexOf(action.payload);
+            const index = state.colors.indexOf(action.payload);
             if (index !== -1) {
-                state.value.splice(index, 1);
+                state.colors.splice(index, 1);
             }
+        },
+        setAreSingle: (state, action: PayloadAction<boolean>) => {
+            state.areSingle = action.payload;
+        },
+        setAreGuild: (state, action: PayloadAction<boolean>) => {
+            state.areGuild = action.payload;
+        },
+        setAreShard: (state, action: PayloadAction<boolean>) => {
+            state.areShard = action.payload;
         }
     }
 });
 
-export const { addColor, removeColor } = colorSelectionSlice.actions;
+export const { addColor, removeColor, setAreSingle, setAreGuild, setAreShard } = colorSelectionSlice.actions;
 export default colorSelectionSlice.reducer;

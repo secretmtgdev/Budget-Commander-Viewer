@@ -6,25 +6,18 @@ import { setMaxPrice, setMinPrice } from '../../redux/priceSelectionSlice';
 
 const PricePicker = () => {
     const dispatch = useAppDispatch();
-    const prices = Array.from({ length: Math.ceil(100) }, (_, i) => i);
     return (
         <div className='price-picker-container'>
             <label htmlFor='prices'>Price range</label>
-            <select 
-                onChange={e => dispatch(setMinPrice(parseInt(e.target.value)))}
-                name='min-price'>
-                {prices.map(price => 
-                    <option value={price}>{price}</option>
-                )}
-            </select>
+            <input 
+                onChange={e => dispatch(setMinPrice(parseFloat(e.target.value)))}
+                name='min-price'
+                type='number' />
             -
-            <select
-                onChange={e => dispatch(setMaxPrice(parseInt(e.target.value)))}
-                name='max-price'>
-                {prices.map(price => 
-                    <option value={price}>{price}</option>
-                )}
-            </select>
+            <input
+                onChange={e => dispatch(setMaxPrice(parseFloat(e.target.value)))}
+                name='max-price'
+                type='number' />
         </div>
     )
 }

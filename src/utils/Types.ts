@@ -11,7 +11,12 @@ export declare namespace ClientLib {
     }
 
     interface IAllFilters {
-        colors?: string[];
+        colorCombinations?: {
+            areSingle: boolean;
+            areGuild: boolean;
+            areShard: boolean;
+            colors: string[];
+        }
         priceRange?: IPriceRange;
     }
 }
@@ -24,11 +29,21 @@ export declare namespace ScryfallLib {
         total_cards: number;
     }
 
+    interface ICardImageUris {
+        art_crop: string;
+        border_crop: string;
+        large: string;
+        normal: string;
+        png: string;
+        small: string;
+    }
+
     interface ICard {
         artist: string;
         artist_id: string;
         cmc: number;
         flavor_text: string;
+        image_uris?: ICardImageUris;
         keywords: string[];
         mana_cost: string;
         name: string;

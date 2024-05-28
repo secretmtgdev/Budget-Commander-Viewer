@@ -1,4 +1,6 @@
+import { connect } from 'react-redux';
 import ScryfallSearch from './components/ScryfallSearch/ScryfallSearch';
+import { mapStateToProps } from './utils/Utils';
 
 function App() {
   return (
@@ -8,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(mapStateToProps)(App);

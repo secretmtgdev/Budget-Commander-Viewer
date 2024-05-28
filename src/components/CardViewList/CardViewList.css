@@ -1,0 +1,14 @@
+.card-view-list-flex {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-view-list-grid {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(5, 240px);
+    grid-gap: 5px;
+}

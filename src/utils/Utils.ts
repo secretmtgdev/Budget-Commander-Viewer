@@ -13,6 +13,25 @@ export const disableElementsByDataSet = (datasetType: string, ...toDisable: any[
     .forEach(element => {
         element.disabled = true;
         element.parentElement?.classList.add('disabled');
+        if (element.parentElement?.classList.contains('selected')) {
+            element.parentElement.classList.remove('selected');
+        }
+    });
+}
+
+export const enableElementsByDataSet = (datasetType: string, ...toEnable: any[]) => {
+    const elements = document.querySelectorAll<HTMLInputElement>(`[${datasetType}]`);
+    Array.from(elements)
+    .filter(element => {
+        const dataType = element.getAttribute(datasetType);
+        return toEnable.indexOf(parseInt(dataType!.valueOf())) >= 0;
+    })
+    .forEach(element => {
+        element.disabled = false;
+        element.parentElement?.classList.remove('disabled');
+        if (element.parentElement?.classList.contains('selected')) {
+            element.parentElement.classList.remove('selected');
+        }
     });
 }
 
@@ -40,3 +59,14 @@ export const isSingleColor = (selectedType: string) => Object.values(CARD_COLORS
 // We can leverage 'in' because the keys are the same as the values
 export const isGuild = (selectedType: string) => selectedType in GUILDS;
 export const isShard = (selectedType: string) => selectedType in SHARDS;
+
+/*******************************
+ ** All redux related helpers **
+ *******************************/
+export const mapStateToProps = (state: any) => {
+    return {
+        cardList: state.cardList,
+        colorSelection: state.colorSection,
+        priceSelection: state.priceSelection
+    }
+}

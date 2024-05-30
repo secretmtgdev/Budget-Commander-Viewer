@@ -1,6 +1,6 @@
 # Budget Commander Search
 ## Screenshot of the week
-![Screenshot of application](https://github.com/secretmtgdev/Budget-Commander-Viewer/blob/main/src/assets/weekly_screenshots/week_1.png)
+![Screenshot of application](https://github.com/secretmtgdev/Budget-Commander-Viewer/blob/main/src/assets/weekly_screenshots/week_2.png)
 
 ## Objective
 Tired of looking at budget options on EDHrec that aren't quite budget? Look no further for now you'll soon be able to search for specific staples in your commanders color identity within your budget with the click of a button!

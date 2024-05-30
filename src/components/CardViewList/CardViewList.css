@@ -1,3 +1,7 @@
+.card-view-list-flex, .card-view-list-grid {
+    height: 0; /* Setting the height to anything else cuts the previous components */
+}
+
 .card-view-list-flex {
     width: 100%;
     display: flex;

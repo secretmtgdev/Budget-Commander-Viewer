@@ -6,41 +6,120 @@ export enum CARD_COLOR {
     shard
 }
 
-export const GUILDS: ClientLib.IColor = {
-    azorius: 'azorius',
-    dimir: 'dimir',
-    rakdos: 'rakdos',
-    gruul: 'gruul',
-    selesnya: 'selesnya',
-    orzhov: 'orzhov',
-    izzet: 'izzet',
-    golgari: 'golgari',
-    boros: 'boros',
-    simic: 'simic'
+export const SINGLE_COLOR: ClientLib.IColorSet = {
+    white: {
+        name: 'white',
+        color: 'w'
+    },
+    blue: {
+        name: 'blue',
+        color: 'u'
+    },
+    red: {
+        name: 'red',
+        color: 'r'
+    },
+    black: {
+        name: 'black',
+        color: 'b'
+    },
+    green: {
+        name: 'green',
+        color: 'g'
+    }
 }
 
-export const SHARDS: ClientLib.IColor = {
-    bant: 'bant',
-    esper: 'esper',
-    grixis: 'grixis',
-    jund: 'jund',
-    naya: 'naya'
+export const GUILDS: ClientLib.IColorSet = {
+    azorius: {
+        name: 'azorius',
+        color: 'wu'
+    },        
+    dimir: {
+        name: 'dimir',
+        color: 'ub'
+    },
+    rakdos: {
+        name: 'rakdos',
+        color: 'br'
+    },
+    gruul: {
+        name: 'gruul',
+        color: 'rg'
+    },
+    selesnya: {
+        name: 'selesnya',
+        color: 'wg'
+    },
+    orzhov: {
+        name: 'orzhov',
+        color: 'wb'
+    },
+    izzet: {
+        name: 'izzet',
+        color: 'ur'
+    },
+    golgari: {
+        name: 'golgari',
+        color: 'bg'
+    },
+    boros: {
+        name: 'boros',
+        color: 'wr'
+    },
+    simic: {
+        name: 'simic',
+        color: 'ug'
+    }
 }
 
-export const FOUR_COLOR: ClientLib.IColor = {
-    chaos: 'chaos',
-    aggression: 'aggression',
-    altruism: 'altruism',
-    growth: 'growth',
-    artifice: 'artifice'
+export const SHARDS: ClientLib.IColorSet = {
+    bant: {
+        name: 'bant',
+        color: 'wug'
+    },
+    esper: {
+        name: 'esper',
+        color: 'wub'
+    },
+    grixis: {
+        name: 'grixis',
+        color: 'ubr'
+    },
+    jund: {
+        name: 'jund',
+        color: 'brg'
+    },
+    naya: {
+        name: 'naya',
+        color: 'wrg'
+    }
 }
 
-export const CARD_COLORS: ClientLib.IColor = {
-    white: 'w',
-    blue: 'u',
-    red: 'r',
-    black: 'b',
-    green: 'g',
+export const FOUR_COLOR: ClientLib.IColorSet = {
+    chaos: {
+        name: 'chaos',
+        color: 'ubrg'
+    },
+    aggression: {
+        name: 'aggression',
+        color: 'wbrg'
+    },
+    altruism: {
+        name: 'altruism',
+        color: 'wurg'
+    },
+    growth: {
+        name: 'growth',
+        color: 'wubg'
+    },
+    artifice: {
+        name: 'artifice',
+        color: 'wubr'
+    }
+}
+
+export const CARD_COLORS: ClientLib.IColorSet = {
+    single_colors: SINGLE_COLOR,
     guild_colors: GUILDS,
     shard_colors: SHARDS,
     four_color: FOUR_COLOR

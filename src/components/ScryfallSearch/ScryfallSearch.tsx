@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getAllMagicColors, mapStateToProps } from "../../utils/Utils";
@@ -8,7 +9,8 @@ import PricePicker from "../PricePicker/PricePicker";
 import { ClientLib } from "../../utils/Types";
 import { setCardList, setNextCardListUrl } from "../../redux/cardListSlice";
 import CardViewList from "../CardViewList/CardViewList";
-import { connect } from "react-redux";
+
+import './ScryfallSearch.css';
 
 const ScryfallSearch = () => {
     const dispatch = useAppDispatch();
@@ -23,7 +25,8 @@ const ScryfallSearch = () => {
     };
 
     return (
-        <>
+        <div id='scryfall-search'>
+            <h1>Search for any Magic card</h1>
             <CheckBoxPickerWrapper options={getAllMagicColors()}/>
             <PricePicker />
             <button onClick={async () => {
@@ -32,7 +35,7 @@ const ScryfallSearch = () => {
                 dispatch(setNextCardListUrl(nextCards))
             }}>Search</button>
             <CardViewList />
-        </>
+        </div>
     )
 };
 

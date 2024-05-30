@@ -6,11 +6,20 @@ const getColorQuery = (colors: string[]) => colors.reduce((prevColor, curColor) 
 const getCardsByQuery = async (epQuery: string): Promise<[ScryfallLib.ICard[], string]> => {
     let query = `${getFullQueryEndpoint(SCRYFALL_ENDPOINTS.search)}?q=${epQuery}`;
     let cards: ScryfallLib.ICard[] = [];
+    console.error(query);
     const cardResponse = await fetch(query)
-        .then(res => res.json())
+        .then(res => {
+            if (res.status >= 400) {
+                throw new Error(res.statusText);
+            }
+            return res.json()
+        })        
         .then((res: ScryfallLib.ICardResponse) => res)
-        .catch(() => EMPTY_CARD_RESPONSE);
-    cards = [...cards, ...cardResponse.data];
+        .catch(() => {
+            // TODO: Create a component to inform the user that no cards are available
+            return EMPTY_CARD_RESPONSE;
+        });
+    cards = [...cards, ...cardResponse.data as ScryfallLib.ICard[]];
     return [cards, cardResponse.next_page];
 }
 

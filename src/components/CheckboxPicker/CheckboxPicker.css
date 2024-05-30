@@ -1,7 +1,11 @@
 .grid {
     display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 10px;
+    grid-template-columns: repeat(5, auto);
+    padding: var(--option-spacing);
+    column-gap: var(--option-spacing);
+    row-gap: var(--option-spacing);
+    max-width: 1000px;
+    border: 1px solid black;
 }
 
 .label-container {
@@ -27,6 +31,7 @@
 .label-container:not(.disabled):hover {
     cursor: pointer;
     border: 1px solid lightgreen;
+    background-color: rgb(162, 254, 199);
 }
 
 .disabled {

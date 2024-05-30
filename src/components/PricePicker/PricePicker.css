@@ -4,3 +4,11 @@
     justify-content: center;
     align-items: center;
 }
+
+.price-picker-container > * {
+    margin: 0 5px;
+}
+
+.price-picker-container > input {
+    width: var(--number-input-width);
+}

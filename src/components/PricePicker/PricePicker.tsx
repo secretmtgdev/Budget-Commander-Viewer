@@ -8,7 +8,7 @@ const PricePicker = () => {
     const dispatch = useAppDispatch();
     return (
         <div className='price-picker-container'>
-            <label htmlFor='prices'>Price range</label>
+            <label htmlFor='prices'>Price range (USD):</label>
             <input 
                 onChange={e => dispatch(setMinPrice(parseFloat(e.target.value)))}
                 name='min-price'

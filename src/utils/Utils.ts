@@ -1,5 +1,5 @@
 import { SCRYFALL_BASE_URI } from "./ApiConstants";
-import { CARD_COLORS, GUILDS, SHARDS } from "./MagicConstants";
+import { CARD_COLORS, GUILDS, SHARDS, SINGLE_COLOR } from "./MagicConstants";
 import { ClientLib } from "./Types";
 
 export const getFullQueryEndpoint = (queryEndpoint: string) => `${SCRYFALL_BASE_URI}/${queryEndpoint}`;
@@ -40,12 +40,12 @@ export const enableElementsByDataSet = (datasetType: string, ...toEnable: any[])
  *************************************/
 export const getAllMagicColors = (): string[][] => {
     const colors: string[][] = [];
-    const getMagicColorsHelper = (cardColorObj: ClientLib.IColor) => {
+    const getMagicColorsHelper = (cardColorObj: ClientLib.IColorSet) => {
         for (const color in cardColorObj) {
-            if (typeof cardColorObj[color] === 'string') {
-                colors.push([color, cardColorObj[color] as string]);
+            if ('color' in cardColorObj[color]) {
+                colors.push([cardColorObj[color].name as string, cardColorObj[color].color as string]);
             } else {
-                getMagicColorsHelper(cardColorObj[color] as ClientLib.IColor);
+                getMagicColorsHelper(cardColorObj[color] as ClientLib.IColorSet);
             }
         }
     }
@@ -54,11 +54,19 @@ export const getAllMagicColors = (): string[][] => {
     return colors;
 }
 
-export const isSingleColor = (selectedType: string) => Object.values(CARD_COLORS).indexOf(selectedType) >= 0;
+const isColorNameValid = (selectedType: string, colorType: ClientLib.IColorSet) => {
+    for (const key in colorType) {
+        if (colorType[key].color === selectedType) {
+            return true;
+        }
+    }
+    
+    return false;
+}
 
-// We can leverage 'in' because the keys are the same as the values
-export const isGuild = (selectedType: string) => selectedType in GUILDS;
-export const isShard = (selectedType: string) => selectedType in SHARDS;
+export const isSingleColor = (selectedType: string) => isColorNameValid(selectedType, SINGLE_COLOR);
+export const isGuild = (selectedType: string) => isColorNameValid(selectedType, GUILDS);
+export const isShard = (selectedType: string) => isColorNameValid(selectedType, SHARDS);
 
 /*******************************
  ** All redux related helpers **

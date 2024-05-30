@@ -2,7 +2,12 @@ type rarity = 'common' | 'uncommon' | 'rare' | 'mythic';
 
 export declare namespace ClientLib {
     interface IColor {
-        [key: string]: string | IColor;
+        name: string;
+        color: string;
+    }
+    
+    interface IColorSet {
+        [key: string]: IColor | IColorSet;
     }
 
     interface IPriceRange {

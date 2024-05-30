@@ -57,7 +57,7 @@ export const CheckboxPicker = ({options}: ICheckboxPicker) => {
     }
 
     return (
-        <div role='radiogroup' className='grid'>
+        <div role='group' className='grid'>
             {options.map(option => (
                 <label key={option[0]} className='label-container'>{option[0]}
                     <input 

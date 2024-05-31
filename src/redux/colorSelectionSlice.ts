@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ColorSelectionState {
+    noOtherColors: boolean;
     colors: string[];
     areSingle: boolean;
     areGuild: boolean;
@@ -9,6 +10,7 @@ interface ColorSelectionState {
 }
 
 const initialState: ColorSelectionState = {
+    noOtherColors: false,
     colors: [],
     areSingle: false,
     areGuild: false,
@@ -40,9 +42,20 @@ export const colorSelectionSlice = createSlice({
         },
         setIsFourColor: (state, action: PayloadAction<boolean>) => {
             state.isFourColor = action.payload;
+        },
+        setNoOtherColors: (state, action: PayloadAction<boolean>) => {
+            state.noOtherColors = action.payload;
         }
     }
 });
 
-export const { addColor, removeColor, setAreSingle, setIsGuild, setIsShard, setIsFourColor } = colorSelectionSlice.actions;
+export const { 
+    addColor,
+    removeColor,
+    setAreSingle,
+    setIsGuild,
+    setIsShard,
+    setIsFourColor,
+    setNoOtherColors
+} = colorSelectionSlice.actions;
 export default colorSelectionSlice.reducer;

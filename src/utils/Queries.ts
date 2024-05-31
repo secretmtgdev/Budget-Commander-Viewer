@@ -29,7 +29,7 @@ export const getCardsByEndpoint = async (endPoint: string): Promise<[ScryfallLib
 export const getCardsByFilters = async (filters: ClientLib.IAllFilters) => {
     let curQuery = [];
     if (filters.colorCombinations && filters.colorCombinations.colors!.length > 0) {
-        curQuery.push(`c${filters.colorCombinations.areSingle ? ':' : '='}${getColorQuery(filters.colorCombinations.colors)}`);
+        curQuery.push(`c${filters.colorCombinations.areSingle && !filters.colorCombinations.noOtherColors ? ':' : '='}${getColorQuery(filters.colorCombinations.colors)}`);
     }
 
     if (filters.priceRange) {
@@ -37,6 +37,14 @@ export const getCardsByFilters = async (filters: ClientLib.IAllFilters) => {
         if (filters.priceRange.maxPrice !== Infinity) {
             curQuery.push(`+usd<=${filters.priceRange.maxPrice}`);
         }
+    }
+
+    if (!!filters.textFilter) {
+        curQuery.push(filters!.textFilter);
+    }
+
+    if (filters.cardTypeSelection && filters.cardTypeSelection.length > 0) {
+        curQuery.push(`t:/${filters.cardTypeSelection.join('|')}{1,}/`)
     }
 
     return await getCardsByQuery(curQuery.join(''));

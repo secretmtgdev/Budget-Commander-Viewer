@@ -21,8 +21,20 @@ export declare namespace ClientLib {
             areGuild: boolean;
             areShard: boolean;
             colors: string[];
+            noOtherColors: boolean;
         }
         priceRange?: IPriceRange;
+        textFilter?: string;
+        cardTypeSelection?: string[]
+    }
+
+    interface IPickerType {
+        name: string;
+        value: string;
+        datasetInfo: {
+            // data-* to value
+            [key: string]: string
+        };
     }
 }
 

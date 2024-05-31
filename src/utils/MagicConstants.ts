@@ -126,6 +126,7 @@ export const CARD_COLORS: ClientLib.IColorSet = {
     four_color: FOUR_COLOR
 }
 
-export const DATASET_TYPES = {
-    color: 'data-color-type'
+export const MAGIC_TYPES = {
+    permanent: new Set(['Land', 'Creature', 'Artifact', 'Enchantment', 'Planeswalker', 'Battle']),
+    nonPermanent: new Set(['Instant', 'Sorcery'])
 }

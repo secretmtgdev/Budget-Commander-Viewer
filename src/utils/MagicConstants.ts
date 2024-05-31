@@ -3,7 +3,8 @@ import { ClientLib } from "./Types"
 export enum CARD_COLOR {
     single,
     guild,
-    shard
+    shard,
+    fourColor
 }
 
 export const SINGLE_COLOR: ClientLib.IColorSet = {

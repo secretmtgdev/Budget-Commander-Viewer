@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useAppDispatch } from '../../redux/hooks';
-import { addColor, removeColor, setAreGuild, setAreShard, setAreSingle } from '../../redux/colorSelectionSlice';
+import { addColor, removeColor, setIsGuild, setIsShard, setAreSingle, setIsFourColor } from '../../redux/colorSelectionSlice';
 import './CheckboxPicker.css';
-import { disableElementsByDataSet, enableElementsByDataSet, isGuild, isSingleColor } from '../../utils/Utils';
+import { disableElementsByDataSet, enableElementsByDataSet, isGuild, isShard, isSingleColor } from '../../utils/Utils';
 import { CARD_COLOR, DATASET_TYPES } from '../../utils/MagicConstants';
 
 export interface ICheckboxPicker {
@@ -21,15 +21,19 @@ export const CheckboxPicker = ({options}: ICheckboxPicker) => {
             switch (selectedColorType) {
                 case CARD_COLOR[CARD_COLOR.single]:
                     dispatch(setAreSingle(true));
-                    disableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.guild, CARD_COLOR.shard);
+                    disableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.guild, CARD_COLOR.shard, CARD_COLOR.fourColor);
                     break;
                 case CARD_COLOR[CARD_COLOR.guild]:
-                    dispatch(setAreGuild(true));
-                    disableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.single, CARD_COLOR.shard);
+                    dispatch(setIsGuild(true));
+                    disableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.single, CARD_COLOR.shard, CARD_COLOR.fourColor);
                     break;
                 case CARD_COLOR[CARD_COLOR.shard]:
-                    dispatch(setAreShard(true));
-                    disableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.single, CARD_COLOR.guild);
+                    dispatch(setIsShard(true));
+                    disableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.single, CARD_COLOR.guild, CARD_COLOR.fourColor);
+                    break;
+                case CARD_COLOR[CARD_COLOR.fourColor]:
+                    dispatch(setIsFourColor(true));
+                    disableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.single, CARD_COLOR.guild, CARD_COLOR.shard);
                     break;
             }
 
@@ -39,15 +43,19 @@ export const CheckboxPicker = ({options}: ICheckboxPicker) => {
             switch (selectedColorType) {
                 case CARD_COLOR[CARD_COLOR.single]:
                     dispatch(setAreSingle(false));
-                    enableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.guild, CARD_COLOR.shard);
+                    enableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.guild, CARD_COLOR.shard, CARD_COLOR.fourColor);
                     break;
                 case CARD_COLOR[CARD_COLOR.guild]:
-                    dispatch(setAreGuild(false));
-                    enableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.single, CARD_COLOR.shard);
+                    dispatch(setIsGuild(false));
+                    enableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.single, CARD_COLOR.shard, CARD_COLOR.fourColor);
                     break;
                 case CARD_COLOR[CARD_COLOR.shard]:
-                    dispatch(setAreShard(false));
-                    enableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.single, CARD_COLOR.guild);
+                    dispatch(setIsShard(false));
+                    enableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.single, CARD_COLOR.guild, CARD_COLOR.fourColor);
+                    break;
+                case CARD_COLOR[CARD_COLOR.fourColor]:
+                    dispatch(setIsFourColor(false));
+                    enableElementsByDataSet(DATASET_TYPES.color, CARD_COLOR.single, CARD_COLOR.guild, CARD_COLOR.shard);
                     break;
             }
 
@@ -67,7 +75,11 @@ export const CheckboxPicker = ({options}: ICheckboxPicker) => {
                                 CARD_COLOR.single :
                                 (isGuild(option[1]) ?
                                     CARD_COLOR.guild :
-                                    CARD_COLOR.shard)
+                                    (isShard(option[1]) ?
+                                        CARD_COLOR.shard :
+                                        CARD_COLOR.fourColor
+                                    )
+                                )
                         }
                         onClick={(checkbox) => handleChecked(checkbox.currentTarget)}
                         value={option[1]}/>

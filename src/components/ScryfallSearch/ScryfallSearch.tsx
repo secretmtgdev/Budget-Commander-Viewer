@@ -9,6 +9,7 @@ import PricePicker from "../PricePicker/PricePicker";
 import { ClientLib } from "../../utils/Types";
 import { setCardList, setNextCardListUrl } from "../../redux/cardListSlice";
 import CardViewList from "../CardViewList/CardViewList";
+import LoadMore from "../LoadMore/LoadMore";
 
 import './ScryfallSearch.css';
 
@@ -16,6 +17,7 @@ const ScryfallSearch = () => {
     const dispatch = useAppDispatch();
     const colorSelection = useAppSelector(state => state.colorSelection);
     const priceSelection = useAppSelector(state => state.priceSelection);
+    const cardSelection = useAppSelector(state => state.cardList);
     const filterObject: ClientLib.IAllFilters = {
         colorCombinations: colorSelection,
         priceRange: {
@@ -35,6 +37,7 @@ const ScryfallSearch = () => {
                 dispatch(setNextCardListUrl(nextCards))
             }}>Search</button>
             <CardViewList />
+            {!!cardSelection.nextCardListUrl && <LoadMore />}
         </div>
     )
 };

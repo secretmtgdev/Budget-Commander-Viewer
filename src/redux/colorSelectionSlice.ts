@@ -5,13 +5,15 @@ interface ColorSelectionState {
     areSingle: boolean;
     areGuild: boolean;
     areShard: boolean;
+    isFourColor: boolean;
 }
 
 const initialState: ColorSelectionState = {
     colors: [],
     areSingle: false,
     areGuild: false,
-    areShard: false
+    areShard: false,
+    isFourColor: false
 }
 
 export const colorSelectionSlice = createSlice({
@@ -30,14 +32,17 @@ export const colorSelectionSlice = createSlice({
         setAreSingle: (state, action: PayloadAction<boolean>) => {
             state.areSingle = action.payload;
         },
-        setAreGuild: (state, action: PayloadAction<boolean>) => {
+        setIsGuild: (state, action: PayloadAction<boolean>) => {
             state.areGuild = action.payload;
         },
-        setAreShard: (state, action: PayloadAction<boolean>) => {
+        setIsShard: (state, action: PayloadAction<boolean>) => {
             state.areShard = action.payload;
+        },
+        setIsFourColor: (state, action: PayloadAction<boolean>) => {
+            state.isFourColor = action.payload;
         }
     }
 });
 
-export const { addColor, removeColor, setAreSingle, setAreGuild, setAreShard } = colorSelectionSlice.actions;
+export const { addColor, removeColor, setAreSingle, setIsGuild, setIsShard, setIsFourColor } = colorSelectionSlice.actions;
 export default colorSelectionSlice.reducer;

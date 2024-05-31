@@ -1,5 +1,5 @@
 import { SCRYFALL_BASE_URI } from "./ApiConstants";
-import { CARD_COLORS, GUILDS, SHARDS, SINGLE_COLOR } from "./MagicConstants";
+import { CARD_COLORS, FOUR_COLOR, GUILDS, SHARDS, SINGLE_COLOR } from "./MagicConstants";
 import { ClientLib } from "./Types";
 
 export const getFullQueryEndpoint = (queryEndpoint: string) => `${SCRYFALL_BASE_URI}/${queryEndpoint}`;
@@ -67,6 +67,7 @@ const isColorNameValid = (selectedType: string, colorType: ClientLib.IColorSet) 
 export const isSingleColor = (selectedType: string) => isColorNameValid(selectedType, SINGLE_COLOR);
 export const isGuild = (selectedType: string) => isColorNameValid(selectedType, GUILDS);
 export const isShard = (selectedType: string) => isColorNameValid(selectedType, SHARDS);
+export const isFourColor = (selectedType: string) => isColorNameValid(selectedType, FOUR_COLOR);
 
 /*******************************
  ** All redux related helpers **

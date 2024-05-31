@@ -5,13 +5,16 @@ import { getFullQueryEndpoint } from './Utils';
 const getColorQuery = (colors: string[]) => colors.reduce((prevColor, curColor) => prevColor + curColor);
 const getCardsByQuery = async (epQuery: string): Promise<[ScryfallLib.ICard[], string]> => {
     let query = `${getFullQueryEndpoint(SCRYFALL_ENDPOINTS.search)}?q=${epQuery}`;
+    return await getCardsByEndpoint(query);
+}
+
+export const getCardsByEndpoint = async (endPoint: string): Promise<[ScryfallLib.ICard[], string]> => {
     let cards: ScryfallLib.ICard[] = [];
-    console.error(query);
-    const cardResponse = await fetch(query)
+    const cardResponse = await fetch(endPoint)
         .then(res => {
             if (res.status >= 400) {
                 throw new Error(res.statusText);
-            }
+            }            
             return res.json()
         })        
         .then((res: ScryfallLib.ICardResponse) => res)

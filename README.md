@@ -9,6 +9,7 @@ Tired of looking at budget options on EDHrec that aren't quite budget? Look no f
 - Query by multiple color selections, single shard, and non-overlapping builds
 - Query by price range
 - View returned by queries
+- Load more cards if more cards are available
 
 ## What needs cleaning up
 - Disabling logic for invalid shard and guild selections

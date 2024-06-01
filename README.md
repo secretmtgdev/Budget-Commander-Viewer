@@ -21,4 +21,4 @@ Tired of looking at budget options on EDHrec that aren't quite budget? Look no f
 
 ## Miscellaneous notes
 
-To find out the number of lines that have been written by developers, on this project, run `git ls-files | grep -v '\.d.ts\|\.json\|\.png\|\.jpeg\|\.gitignore\|\.md\|\.ico\|\.avif\|\.svg' | xargs wc -l`
+To find out the number of lines that have been written by developers, on this project, run `git ls-files | grep -v '\public\|\.d.ts\|\.json\|\.png\|\.jpeg\|\.gitignore\|\.md\|\.ico\|\.avif\|\.svg' | xargs wc -l`

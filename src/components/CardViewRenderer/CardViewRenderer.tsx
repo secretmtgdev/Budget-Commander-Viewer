@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { ScryfallLib } from "../../utils/Types";
-import './CardViewRenderer.css';
 
-const CardViewRenderer = ({ image_uris, name }: ScryfallLib.ICard) => {
+import './CardViewRenderer.css';
+import CardViewModal from "./CardViewModal";
+
+const CardViewRenderer = (cardProps: ScryfallLib.ICard) => {
+    const [showModal, setShowModal] = useState(false);
     return (
-        <div className='card-view-container'>
-            <img src={image_uris!.border_crop} alt={name} />
-        </div>
+        <>
+            <div className='card-view-container'>
+                <img
+                    onClick={() => setShowModal(!showModal)}
+                    src={cardProps.image_uris!.border_crop}
+                    alt={cardProps.name} 
+                />
+            </div>
+            {showModal && <CardViewModal {...cardProps} showModal={setShowModal} />}
+        </>        
     )
 }
 

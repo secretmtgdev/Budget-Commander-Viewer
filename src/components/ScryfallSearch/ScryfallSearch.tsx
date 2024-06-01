@@ -10,17 +10,18 @@ import { setCardList, setNextCardListUrl } from "../../redux/cardListSlice";
 import CardViewList from "../CardViewList/CardViewList";
 import LoadMore from "../LoadMore/LoadMore";
 import MagicColorPicker from "../CheckboxPicker/MagicColorPicker";
-import SearchBar from "../SearchBar/SearchBar";
+import MagicTypePicker from "../CheckboxPicker/MagicTypePicker";
+import SearchByName from "../SearchBar/SearchByName";
 
 import './ScryfallSearch.css';
-import MagicTypePicker from "../CheckboxPicker/MagicTypePicker";
+import SearchByText from "../SearchBar/SearchByText";
 
 const ScryfallSearch = () => {
     const dispatch = useAppDispatch();
     const colorSelection = useAppSelector(state => state.colorSelection);
     const priceSelection = useAppSelector(state => state.priceSelection);
     const cardSelection = useAppSelector(state => state.cardList);
-    const textSelection = useAppSelector(state => state.searchQuery.query);
+    const textSelection = useAppSelector(state => state.searchQuery);
     const cardTypeSelection = useAppSelector(state => state.cardTypeSelection.cardTypes)
     const filterObject: ClientLib.IAllFilters = {
         colorCombinations: colorSelection,
@@ -38,7 +39,8 @@ const ScryfallSearch = () => {
             <MagicColorPicker options={getAllMagicColors()}/>
             <MagicTypePicker options={getAllCardTypes()}/>
             <PricePicker />
-            <SearchBar />
+            <SearchByName />
+            <SearchByText />
             <button onClick={async () => {
                 const [cards, nextCards] = await getCardsByFilters(filterObject);
                 dispatch(setCardList(cards));

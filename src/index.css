@@ -24,3 +24,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*************************
+ ** Styling for headers **
+ *************************/
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.header > * {
+  border: 1px solid black;
+  width: 100%;
+  padding: 25px;
+  height: 100px;
+  align-content: center;
+}
+
+.header-left {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-center {
+  text-align: center;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+

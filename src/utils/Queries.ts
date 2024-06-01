@@ -32,22 +32,28 @@ export const getCardsByFilters = async (filters: ClientLib.IAllFilters) => {
         curQuery.push(`c${filters.colorCombinations.areSingle && !filters.colorCombinations.noOtherColors ? ':' : '='}${getColorQuery(filters.colorCombinations.colors)}`);
     }
 
-    if (filters.priceRange) {
-        curQuery.push(`+usd>=${filters.priceRange.minPrice}`);
-        if (filters.priceRange.maxPrice !== Infinity) {
-            curQuery.push(`+usd<=${filters.priceRange.maxPrice}`);
+    if (!!filters.priceRange) {
+        curQuery.push(`usd>=${filters.priceRange.minPrice}`);
+        if (filters.priceRange.maxPrice && filters.priceRange.maxPrice !== Infinity && !isNaN(filters.priceRange.maxPrice)) {
+            curQuery.push(`usd<=${filters.priceRange.maxPrice}`);
         }
     }
 
     if (!!filters.textFilter) {
-        curQuery.push(filters!.textFilter);
+        if (filters.textFilter.name) {
+            curQuery.push(filters!.textFilter.name);
+        }
+
+        if (filters.textFilter.text) {
+            curQuery.push(`o:${filters.textFilter.text}`)
+        }
     }
 
     if (filters.cardTypeSelection && filters.cardTypeSelection.length > 0) {
         curQuery.push(`t:/${filters.cardTypeSelection.join('|')}{1,}/`)
     }
 
-    return await getCardsByQuery(curQuery.join(''));
+    return await getCardsByQuery(curQuery.join('+'));
 }
 
 export const getCardsByColors = async (colors: string[]) => {
@@ -60,11 +66,3 @@ export const getCardsByColors = async (colors: string[]) => {
     let [cards, nextPage]: [ScryfallLib.ICard[], string] = await getCardsByQuery(epQuery);
     return [cards, nextPage];
 }
-
-export const getCardsByCardType = () => {}
-export const getCardsByText = () => {}
-export const getCardsByManaCost = () => {}
-export const getCardsByPower = () => {}
-export const getCardsByToughness = () => {}
-export const getCardsByRarity = () => {}
-export const getCardBySet = () => {}

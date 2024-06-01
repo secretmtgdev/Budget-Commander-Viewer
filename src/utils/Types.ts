@@ -12,7 +12,12 @@ export declare namespace ClientLib {
 
     interface IPriceRange {
         minPrice: number;
-        maxPrice: number;
+        maxPrice?: number;
+    }
+
+    interface ISearchQuery {
+        name?: string;
+        text?: string;
     }
 
     interface IAllFilters {
@@ -24,7 +29,7 @@ export declare namespace ClientLib {
             noOtherColors: boolean;
         }
         priceRange?: IPriceRange;
-        textFilter?: string;
+        textFilter?: ISearchQuery;
         cardTypeSelection?: string[]
     }
 

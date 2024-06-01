@@ -1,0 +1,17 @@
+.card-view-modal-container {
+    /* Remove from the flow of the page */
+    position: absolute;
+    background-color: lightgrey;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+}
+
+.modal-content, .modal-prices {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

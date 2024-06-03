@@ -4,7 +4,7 @@
 - [Autocomplete spec](./system_design/Autocomplete/AutocompleteSpec.md)
 
 ## Screenshot of the week
-![Screenshot of application](https://github.com/secretmtgdev/Budget-Commander-Viewer/blob/main/src/assets/weekly_screenshots/week_2.png)
+![Screenshot of application](https://github.com/secretmtgdev/Budget-Commander-Viewer/blob/main/client/src/assets/weekly_screenshots/week_2.png)
 
 ## What can be done now?
 - Query by multiple color selections, single shard, and non-overlapping builds

@@ -1,9 +1,0 @@
-.card-view-container:hover {
-    cursor: pointer;
-}
-
-.card-view-container > img {
-    height: 335px;
-    width: 240px;
-    border-radius: 8px;
-}

@@ -37,3 +37,11 @@ Tired of looking at budget options on EDHrec that aren't quite budget? Look no f
 - The system should be able to handle thousands of users through horiztonal scaling
 - The system should load previously seen data quickly
 - Autocompletion should be swift and debounced
+
+## Tech Stack
+### Frontend
+- React
+
+### Backend
+- Python + DJango
+- PostgreSQL

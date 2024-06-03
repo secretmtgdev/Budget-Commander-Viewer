@@ -34,21 +34,24 @@ const ScryfallSearch = () => {
     };
 
     return (
-        <div id='scryfall-search'>
-            <h1>Search for any Magic card</h1>
+        <form id='scryfall-search'>
             <MagicColorPicker options={getAllMagicColors()}/>
             <MagicTypePicker options={getAllCardTypes()}/>
             <PricePicker />
             <SearchByName />
             <SearchByText />
-            <button onClick={async () => {
-                const [cards, nextCards] = await getCardsByFilters(filterObject);
-                dispatch(setCardList(cards));
-                dispatch(setNextCardListUrl(nextCards))
-            }}>Search</button>
+            <button 
+                type='button'
+                onClick={async () => {
+                    const [cards, nextCards] = await getCardsByFilters(filterObject);
+                    dispatch(setCardList(cards));
+                    dispatch(setNextCardListUrl(nextCards))
+                }}>
+                    Search
+            </button>
             <CardViewList />
             {!!cardSelection.nextCardListUrl && <LoadMore />}
-        </div>
+        </form>
     )
 };
 

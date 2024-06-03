@@ -13,7 +13,12 @@ const SearchBar = ({ id, label, onChangeHandler }: ISearchBarProps) => {
     return(
         <div>
             <label htmlFor={id}>{label}</label><br />
-            <input onChange={onChangeHandler} id={id} type='text' />
+            <input
+                aria-haspopup='listbox'
+                onChange={onChangeHandler}
+                id={id}
+                type='text'
+            />
         </div>
     )
 }

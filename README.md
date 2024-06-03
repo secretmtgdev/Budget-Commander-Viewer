@@ -1,4 +1,8 @@
 # Budget Commander Search
+## System design
+- [Overall spec](./system_design/OverallSpec.md)
+- [Autocomplete spec](./system_design/Autocomplete/AutocompleteSpec.md)
+
 ## Screenshot of the week
 ![Screenshot of application](https://github.com/secretmtgdev/Budget-Commander-Viewer/blob/main/src/assets/weekly_screenshots/week_2.png)
 
@@ -11,10 +15,12 @@
 - Load more cards if more cards are available
 
 ## What needs cleaning up
-- Caching responses to speed up load time
-- Prevent non-commander legal cards from being shown
-- Add a component notifying the user that there were no cards found
-- Fix up modal component to render card data
+- Setup caching mechanism for queries
+- Add autocomplete list to search by name
+    - Debounce autocomplete
+- Add a Loading component
+- Add an Error component
+- Add a No Network component
 
 ## Miscellaneous notes
 

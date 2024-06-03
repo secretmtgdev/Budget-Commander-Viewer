@@ -30,6 +30,9 @@
 
 .label-container:not(.disabled):hover {
     cursor: pointer;
+}
+
+.focused, .label-container:not(.disabled):hover {
     border: 1px solid lightgreen;
     background-color: rgb(162, 254, 199);
 }

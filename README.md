@@ -4,7 +4,7 @@
 - [Autocomplete spec](./system_design/Autocomplete/AutocompleteSpec.md)
 
 ## Screenshot of the week
-![Screenshot of application](https://github.com/secretmtgdev/Budget-Commander-Viewer/blob/main/client/src/assets/weekly_screenshots/week_2.png)
+![Screenshot of application](https://github.com/secretmtgdev/Budget-Commander-Viewer/blob/main/client/src/assets/weekly_screenshots/week_3.png)
 
 ## What can be done now?
 - Query by multiple color selections, single shard, and non-overlapping builds
@@ -30,3 +30,9 @@ To run the GraphQL server, run `python3 manage.py runserver` within the `server/
 
 ## Schemas
 ![Accounts Schema](https://github.com/secretmtgdev/Budget-Commander-Viewer/blob/main/system_design/images/account_schema.png)
+![Alias Schema](https://github.com/secretmtgdev/Budget-Commander-Viewer/blob/main/system_design/images/alias_schema.png)
+
+## Learning references 
+- [SaltyCrane - Creating a GraphQL API with Python, Graphene, and Postgres](https://www.saltycrane.com/blog/2019/02/creating-graphql-api-python-graphene-and-postgres/#django-postgres)
+- [Mitul Rathod - Empowering your Django backend with GraphQl](https://medium.com/simform-engineering/empowering-your-django-backend-with-graphql-a-powerful-combination-764babd30bb0)
+- [Caleb Curry - Consume graphql on the frontend](https://www.youtube.com/watch?v=fbyMvE9uJ4w)

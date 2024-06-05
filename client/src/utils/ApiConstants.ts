@@ -9,3 +9,13 @@ export const EMPTY_CARD_RESPONSE = {
     data: [],
     next_page: ''
 }
+
+export const ALIAS_QUERY = `
+    {
+        allAliases {
+            alias
+            query
+            shortDescription
+        }
+    }
+`;

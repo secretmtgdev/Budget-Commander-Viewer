@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.10.4",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/react-fontawesome": "github:fortawesome/react-fontawesome",
     "@reduxjs/toolkit": "^2.2.5",
@@ -14,6 +15,8 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "font-awesome": "^4.7.0",
+    "graphql": "^16.8.1",
+    "ra-data-graphql": "^4.16.17",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",

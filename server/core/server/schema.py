@@ -1,22 +1,26 @@
 import graphene
 
 from graphene_django import DjangoObjectType
-from .models import Account
+from .models import Account, Alias
 
 class AccountType(DjangoObjectType):
     class Meta:
         model = Account
         fields = "__all__"
 
-class CreateAccount(graphene.Mutation):
+class AliasType(DjangoObjectType):
+    class Meta:
+        model = Alias
+        fields = "__all__"
+
+class CreateAccount(graphene.Mutation):    
     class Arguments:
         username = graphene.String(required=True)
         password = graphene.String(required=True)
         email = graphene.String(required=True)
-        created_at = graphene.DateTime(required=True)
-    
-    account = graphene.Field(AccountType)
+        created_at = graphene.DateTime(required=True)    
 
+    account = graphene.Field(AccountType)
     def mutate(self, info, username, password, email, created_at, last_login):
         account = Account(username=username, password=password, email=email, created_at=created_at)
         account.save()
@@ -64,16 +68,25 @@ class DeleteAccount(graphene.Mutation):
         account.delete()
         return DeleteAccount(success=True)
 
-class Query(graphene.ObjectType):
-    accounts = graphene.List(AccountType)
-    users = graphene.List(UserType)
+class CreateAlias(graphene.Mutation):
+    queryAlias = graphene.Field(AliasType)
+    class Arguments:
+        alias = graphene.String(required=True)
+        query = graphene.String(required=True)
+        shortDescription = graphene.String(required=True)
 
-    def resolve_accounts(self, info):
-        return Account.objects.all()
+    def mutate(self, info, alias, query, shortDescription):
+        aliasRecord = Alias(alias=alias, query=query, shortDescription=shortDescription)
+        aliasRecord.save()
+        return CreateAlias(queryAlias=aliasRecord)
+
+class Query(graphene.ObjectType):
+    all_aliases = graphene.List(AliasType)
+
+    def resolve_all_aliases(self, info, **kwargs):
+        return Alias.objects.all()
 
 class Mutation(graphene.ObjectType):
-    create_account = CreateAccount.Field()
-    update_account = UpdateAccount.Field()
-    delete_account = DeleteAccount.Field()
+    create_alias = CreateAlias.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

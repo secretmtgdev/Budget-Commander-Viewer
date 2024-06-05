@@ -43,6 +43,14 @@ export declare namespace ClientLib {
     }
 }
 
+export declare namespace ServerLib {
+    interface IAlias {
+        alias: string;
+        query: string;
+        shortDescription: string;
+    }
+}
+
 export declare namespace ScryfallLib {
     interface ICardResponse {
         data: ICard[];

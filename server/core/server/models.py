@@ -8,3 +8,11 @@ class Account(models.Model):
     
     def __str__(self):
         return self.username
+
+class Alias(models.Model):
+    alias = models.CharField(max_length=255)
+    query = models.CharField(max_length=255)
+    shortDescription = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.alias

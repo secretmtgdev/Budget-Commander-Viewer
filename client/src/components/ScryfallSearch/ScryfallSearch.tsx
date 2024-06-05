@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -15,6 +15,7 @@ import SearchByName from "../SearchBar/SearchByName";
 
 import './ScryfallSearch.css';
 import SearchByText from "../SearchBar/SearchByText";
+import AliasesRenderer from "../AliasesRenderer/AliasesRenderer";
 
 const ScryfallSearch = () => {
     const dispatch = useAppDispatch();
@@ -34,24 +35,27 @@ const ScryfallSearch = () => {
     };
 
     return (
-        <form id='scryfall-search'>
-            <MagicColorPicker options={getAllMagicColors()}/>
-            <MagicTypePicker options={getAllCardTypes()}/>
-            <PricePicker />
-            <SearchByName />
-            <SearchByText />
-            <button 
-                type='button'
-                onClick={async () => {
-                    const [cards, nextCards] = await getCardsByFilters(filterObject);
-                    dispatch(setCardList(cards));
-                    dispatch(setNextCardListUrl(nextCards))
-                }}>
-                    Search
-            </button>
-            <CardViewList />
-            {!!cardSelection.nextCardListUrl && <LoadMore />}
-        </form>
+        <>
+            <AliasesRenderer />
+            <form id='scryfall-search'>
+                <MagicColorPicker options={getAllMagicColors()}/>
+                <MagicTypePicker options={getAllCardTypes()}/>
+                <PricePicker />
+                <SearchByName />
+                <SearchByText />
+                <button 
+                    type='button'
+                    onClick={async () => {
+                        const [cards, nextCards] = await getCardsByFilters(filterObject);
+                        dispatch(setCardList(cards));
+                        dispatch(setNextCardListUrl(nextCards))
+                    }}>
+                        Search
+                </button>
+                <CardViewList />
+                {!!cardSelection.nextCardListUrl && <LoadMore />}
+            </form>
+        </>
     )
 };
 

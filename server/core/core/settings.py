@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,8 +76,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'MagicViewer',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
@@ -133,4 +136,7 @@ INSTALLED_APPS = [
     "server.apps.ServerConfig",
     # installed_apps
     "graphene_django",
+    "corsheaders",
 ]
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]

@@ -1,29 +1,24 @@
 import graphene
 
 from graphene_django import DjangoObjectType
-from .models import Account, User
+from .models import Account
 
 class AccountType(DjangoObjectType):
     class Meta:
         model = Account
         fields = "__all__"
 
-class UserType(DjangoObjectType):
-    class Meta:
-        model = User
-        fields = "__all__"
-
 class CreateAccount(graphene.Mutation):
     class Arguments:
         username = graphene.String(required=True)
         password = graphene.String(required=True)
-        user_id = graphene.ID(required=True)
+        email = graphene.String(required=True)
+        created_at = graphene.DateTime(required=True)
     
     account = graphene.Field(AccountType)
 
-    def mutate(self, info, username, password, user_id):
-        user = User.objects.get(pk=user_id)
-        account = Account(username=username, password=password)
+    def mutate(self, info, username, password, email, created_at, last_login):
+        account = Account(username=username, password=password, email=email, created_at=created_at)
         account.save()
         return CreateAccount(account=account)
 
@@ -32,10 +27,11 @@ class UpdateAccount(graphene.Mutation):
         user_id = graphene.ID(required=True)
         username = graphene.String()
         password = graphene.String()
+        email = graphene.String()
 
     account = graphene.Field(AccountType)
 
-    def mutate(self, info, user_id, username=None, password=None):
+    def mutate(self, info, user_id, username=None, password=None, email=None):
         try:
             account = Account.objects.get(pk=user_id)
         except Account.DoesNotExist:
@@ -46,6 +42,9 @@ class UpdateAccount(graphene.Mutation):
         
         if password is not None:
             account.password = password
+
+        if email is not None:
+            account.email = email
 
         account.save()
         return UpdateAccount(account=account)
@@ -71,9 +70,6 @@ class Query(graphene.ObjectType):
 
     def resolve_accounts(self, info):
         return Account.objects.all()
-
-    def resolve_users(self, info):
-        return User.objects.all()
 
 class Mutation(graphene.ObjectType):
     create_account = CreateAccount.Field()

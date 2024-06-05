@@ -24,6 +24,9 @@
 
 ## Miscellaneous notes
 
-To find out the number of lines that have been written by developers, on this project, run `git ls-files | grep -v '\public\|\.d.ts\|\.json\|\.png\|\.jpeg\|\.gitignore\|\.md\|\.ico\|\.avif\|\.svg' | xargs wc -l
+To find out the number of lines that have been written by developers, on this project, run `git ls-files | grep -v '\public\|\.d.ts\|\.json\|\.png\|\.jpeg\|\.gitignore\|\.md\|\.ico\|\.avif\|\.svg' | xargs wc -l`
 
 To run the GraphQL server, run `python3 manage.py runserver` within the `server/core` directory
+
+## Schemas
+![Accounts Schema](https://github.com/secretmtgdev/Budget-Commander-Viewer/blob/main/system_design/images/account_schema.png)

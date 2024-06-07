@@ -123,8 +123,6 @@ export const getAllCardTypes = (): ClientLib.IPickerType[] => {
     return allCardTypes;
 }
 
-
-
 /*******************************
  ** All redux related helpers **
  *******************************/
@@ -136,3 +134,35 @@ export const mapStateToProps = (state: any) => {
         searchQuery: state.searchQuery
     }
 }
+
+export const minDistance = (word1: string, word2: string): number => {
+    const ROWS = word1.length + 1;
+    const COLS = word2.length + 1;
+    let dp = new Array();
+    for (let r = 0; r < ROWS; r++) {
+        dp.push(new Array());
+        for (let c = 0; c < COLS; c++) {
+            dp[r].push(0);
+        }
+    }
+
+    for (let r = 0; r < ROWS; r++) {
+        dp[r][0] = r;
+    }
+    
+    for (let c = 0; c < COLS; c++) {
+        dp[0][c] = c;
+    }
+    
+    for (let r = 1; r < ROWS; r++) {
+        for (let c = 1; c < COLS; c++) {
+            if (word1.charAt(r - 1) === word2.charAt(c - 1)) {
+                dp[r][c] = dp[r-1][c-1];
+            } else {
+                dp[r][c] = 1 + Math.min(dp[r-1][c-1], dp[r][c-1], dp[r-1][c]);
+            }
+        }
+    }
+    
+    return dp[ROWS - 1][COLS - 1];
+};

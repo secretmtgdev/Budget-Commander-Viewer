@@ -3,11 +3,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface searchQueryState {
     name: string;
     text: string;
+    alias: string;
 }
 
 const initialState: searchQueryState = {
     name: '',
-    text: ''
+    text: '',
+    alias: ''
 }
 
 export const searchQuerySlice = createSlice({
@@ -19,9 +21,12 @@ export const searchQuerySlice = createSlice({
         },
         setText: (state, action: PayloadAction<string>) => {
             state.text = action.payload;
+        },
+        setAlias: (state, action: PayloadAction<string>) => {
+            state.alias = action.payload;
         }
     }
 });
 
-export const { setName, setText } = searchQuerySlice.actions;
+export const { setAlias, setName, setText } = searchQuerySlice.actions;
 export default searchQuerySlice.reducer;

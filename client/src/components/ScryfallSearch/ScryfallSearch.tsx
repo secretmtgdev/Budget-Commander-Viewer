@@ -12,6 +12,7 @@ import LoadMore from "../LoadMore/LoadMore";
 import MagicColorPicker from "../CheckboxPicker/MagicColorPicker";
 import MagicTypePicker from "../CheckboxPicker/MagicTypePicker";
 import SearchByName from "../SearchBar/SearchByName";
+import SearchByAlias from "../SearchBar/SearchByAlias";
 
 import './ScryfallSearch.css';
 import SearchByText from "../SearchBar/SearchByText";
@@ -43,6 +44,7 @@ const ScryfallSearch = () => {
                 <PricePicker />
                 <SearchByName />
                 <SearchByText />
+                <SearchByAlias />
                 <button 
                     type='button'
                     onClick={async () => {

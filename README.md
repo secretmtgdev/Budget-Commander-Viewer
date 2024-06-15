@@ -1,4 +1,4 @@
-# Budget Commander Search
+# Magic Viewer V2
 ## System design
 - [Overall spec](./system_design/OverallSpec.md)
 - [Autocomplete spec](./system_design/Autocomplete/AutocompleteSpec.md)
